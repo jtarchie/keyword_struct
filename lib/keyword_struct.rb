@@ -9,10 +9,13 @@ module KeywordStruct
         end
       RUBY
 
-      klass.class_eval(&block) if block_given?
-
       args.each do |arg|
         klass.send(:attr_accessor, arg)
+      end
+
+      if block_given?
+        mod = Module.new(&block)
+        klass.prepend(mod)
       end
 
       return klass

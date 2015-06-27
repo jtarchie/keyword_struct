@@ -16,6 +16,16 @@ describe KeywordStruct do
         end
         expect(klass.new(name: 'Bob').age).to eq 31
       end
+
+      it 'supports super when overloading an attribute' do
+        klass = KeywordStruct.new(:name) do
+          def name
+            super || 'N/A'
+          end
+        end
+        instance = klass.new(name: nil)
+        expect(instance.name).to eq 'N/A'
+      end
     end
   end
 
