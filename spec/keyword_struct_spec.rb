@@ -27,6 +27,15 @@ describe KeywordStruct do
         expect(instance.name).to eq 'N/A'
       end
     end
+
+    context 'with multiple arguments' do
+      it 'initializes all their values' do
+        klass = KeywordStruct.new(:name, :age)
+        instance = klass.new(name: 'Bob', age: 32)
+        expect(instance.name).to eq 'Bob'
+        expect(instance.age).to eq 32
+      end
+    end
   end
 
   context 'with a new instance' do
